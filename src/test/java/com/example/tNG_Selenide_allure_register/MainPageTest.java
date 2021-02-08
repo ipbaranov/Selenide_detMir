@@ -5,10 +5,7 @@ import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.openqa.selenium.By;
 import org.testng.annotations.*;
-
 import static com.codeborne.selenide.Condition.*;
-
-
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -41,7 +38,7 @@ public class MainPageTest {
         $(byClassName("bb")).shouldHave(exactText( "«Игрушки»"));
     }
 
-    @Test(priority = 2, enabled = false)
+    @Test(priority = 2, enabled = true)
     public void toolsMenu() {
         /**
          *mouse move to menu
@@ -51,7 +48,7 @@ public class MainPageTest {
         $(By.linkText("Куклы и аксессуары")).shouldHave(visible);
     }
 
-    @Test(priority = 3, enabled = false)
+    @Test(priority = 3, enabled = true)
     public void navigationToAllTools() {
         /**
          *mouse move to menu
