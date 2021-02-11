@@ -1,8 +1,6 @@
 package com.example.tNG_Selenide_allure_register;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Driver;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
@@ -11,48 +9,39 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.net.MalformedURLException;
-import java.net.URL;
-
-
-
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
+
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.visible;
-
 import static com.codeborne.selenide.Selectors.byClassName;
 import static com.codeborne.selenide.Selectors.byLinkText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.WebDriverRunner.driver;
 import static org.openqa.selenium.Keys.ENTER;
 
 public class MainPageTest {
     private final MainPage mainPage = new MainPage();
 
     @BeforeClass
-    public   void setUp() throws MalformedURLException {
+    public   void setUp()  {
 
         SelenideLogger.addListener("allure", new AllureSelenide());
 
         Configuration.baseUrl = "https://www.detmir.ru";
         ChromeOptions options = new ChromeOptions();
+
+        //change browser settings
         Map<String, Object> prefs = new HashMap<String, Object>();
         Map<String, Object> profile = new HashMap<String, Object>();
         Map<String, Object> contentSettings = new HashMap<String, Object>();
         contentSettings.put("notifications", 2);
-        contentSettings.put("geolocation", 2);
+        contentSettings.put("geolocation", 2); //off geolocation!!!
         profile.put("managed_default_content_settings", contentSettings);
 
         prefs.put("profile", profile);
@@ -84,7 +73,7 @@ public class MainPageTest {
          * click button
          * checking  result search
          */
-       // mainPage.open();
+
 
          mainPage.searchButton.shouldBe(visible).click();
         $(By.xpath("//input[@type='search']")).sendKeys("Игрушки", ENTER);
